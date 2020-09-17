@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  banco:
+    container_name: banco-mysql-jpa
+    image: banco-mysql-jpa:1.0.0
+    ports:
+      - "13306:3306" # portaExterna:portaInterna , HOST:CONTAINER
+    expose:
+      - "3306"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=RootPassword
+      - MYSQL_DATABASE=studydb
+      - MYSQL_USER=MainUser
+      - MYSQL_PASSWORD=MainPassword
+    volumes:
+      - ./db-volume:/var/lib/mysql
